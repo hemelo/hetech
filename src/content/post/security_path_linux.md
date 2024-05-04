@@ -8,6 +8,8 @@ draft: false
 
 I was recently looking into whether flatpak should not add the directory of packages/applications downloaded in it to `$PATH`, since I needed this to be able to load my applications in an easier and more practical way. I got into a problem situation and decided to do some research on the subject.
 
+So, I could create a summary of what I found and share it with you. Let's take a look at it. 
+
 ## Why not add everything to $PATH?
 
 Suppose I have a version of an application that does whatever you need, creating executable symlinks or wrapper scripts in `~/.local/share/flatpak/exports/bin` which I can add to my $PATH
