@@ -6,16 +6,9 @@ tags: ["arch", "linux", "gaming"]
 draft: false
 ---
 
-## Table of Contents
-
-1. Prerequisites
-2. xpadneo
-3. Testing
-4. Troubleshooting
-
 I spent a bit of time trying to install and configure this but in the end it worked. I'm going to share what I did to help anyone who is experiencing the same problem or who wants to configure the control the same way I configured it.
 
-### Prerequisites
+## Prerequisites
 
 Make sure you have the following packages installed: dkms, linux-headers, git, and a bluetooth implementation. I'll be using bluez.
 
@@ -23,7 +16,7 @@ Make sure you have the following packages installed: dkms, linux-headers, git, a
 sudo pacman -S dkms linux-headers bluez bluez-utils
 ```
 
-### xpadneo
+## xpadneo
 
 I decided to use the [xpadneo driver](https://atar-axis.github.io/xpadneo/) since it has more features and is more up-to-date than the default driver. It is a advanced driver for the XBOX controller. To install it, clone the repository and run the install script.
 
@@ -33,7 +26,7 @@ cd xpadneo
 sudo ./install.sh
 ```
 
-### Testing
+## Testing
 
 After installing the driver, connect the controller to the computer via bluetooth. To do this, you must activate the bluetooth service:
 
@@ -65,7 +58,7 @@ connect <MAC_ADDRESS>
 
 After that, you can see if it's working on cli by looking on the output of connect info. If it's connected it will print "Connected: yes".
 
-### Troubleshooting
+## Troubleshooting
 
 I had a lot of problems with the controller not working properly. If you have the same problem, try pressing the sync button again and repeating the process above after unpair controller.
 You can unpair with the following command:
