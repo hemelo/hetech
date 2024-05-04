@@ -6,7 +6,7 @@ tags: ["arch", "linux", "gaming"]
 draft: false
 ---
 
-### Table of Contents
+## Table of Contents
 
 1. Prerequisites
 2. xpadneo
@@ -25,7 +25,7 @@ sudo pacman -S dkms linux-headers bluez bluez-utils
 
 ### xpadneo
 
-The xpadneo driver is a more advanced driver for the XBOX controller. It has more features and is more up-to-date than the default driver. To install it, clone the repository and run the install script.
+I decided to use the [xpadneo driver](https://atar-axis.github.io/xpadneo/) since it has more features and is more up-to-date than the default driver. It is a advanced driver for the XBOX controller. To install it, clone the repository and run the install script.
 
 ```bash
 git clone https://github.com/atar-axis/xpadneo.git
