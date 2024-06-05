@@ -148,11 +148,14 @@
   },
   "active": "226a93f0e55bc808",
   "lastOpenFiles": [
-    "2024-06-04.md",
+    "post/unique-tags.md",
+    "post/social-image.md",
     "post/jpa-performance.md",
-    "post/xbox-controller.md",
     "post/long-title.md",
-    "post/security_path_linux.md",
-    "post/unique-tags.md"
+    "post/markdown-elements/index.md",
+    "post/cover-image/index.md",
+    "2024-06-04.md",
+    "post/xbox-controller.md",
+    "post/security_path_linux.md"
   ]
 }

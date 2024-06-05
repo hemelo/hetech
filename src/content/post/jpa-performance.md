@@ -6,12 +6,61 @@ tags:
   - spring
   - java
   - api
-draft: true
+draft: false
 ---
 Performance is vital for any application, especially in data access. Spring Data JPA offers a convenient and efficient way to manage database access and data manipulation. However, it also has performance pitfalls that developers need to recognize. This article will cover common performance issues in Spring Data JPA and provide solutions to avoid them. 
 ## JPA
 
 First of all, **Java Persistence API (JPA)** is a specification for managing relational data in Java applications. It provides a standard way to map Java objects to database tables and to handle database operations through object-relational mapping (ORM). JPA simplifies data access and manipulation by allowing developers to work with Java objects rather than SQL statements, thus promoting cleaner and more maintainable code. It is widely used in enterprise applications for seamless interaction with various relational databases.
+
+## Connection Issues
+
+### Pooling
+
+Connection with database works through connection pooling. It helps to improve application performance by reducing the overhead of creating new database connections for each request. However, incorrect configuration or settings can lead to issues like exhausted connections, too many open connections etc. In Spring Data JPA, connection pooling is managed by the underlying DataSource.
+
+The default configuration is pretty good and works for most cases, but these following problems are common and requires manual intervention on  their setup:
+
+#### Connection exhaustion
+
+When the maximum number of connections in the pool is exceeded, new connections are denied, which can cause application errors.
+
+>[!SUCCESS] Solution
+>
+>Configure the DataSource to block new connection requests when the pool is full. You can also configure the maximum number of waiters and the wait timeout for connection acquisition. 
+>However, you can just scale up the connection pool size or database resources to meet the application needs.
+
+#### Connection leaks
+
+A common issue is connection leaks, which occur when connections are not properly released back to the pool after use. This can lead to the pool being depleted, resulting in new connections being denied.
+
+>[!SUCCESS] Solution
+>
+>Configure connection validation and idle timeout to detect and remove leaked connections from the pool. Additionally, tools like connection profiling can help identify the sources of connection leaks in your application code.
+
+#### Slow connection
+
+Another issue is slow connection acquisition, where obtaining a new connection from the pool takes a long time, leading to performance problems in the application.
+
+>[!SUCCESS] Solution
+>
+>Set the maximum number of connections in the pool to a value that suits your application's needs. Additionally, using connection pre-fetching can enhance the speed of acquiring a connection from the pool.
+
+
+
+>[!INFO] How Connection Works
+>
+>In a Spring Boot application, establishing a connection with a database involves several steps, facilitated by the framework's robust configuration and dependency management capabilities. 
+Spring Boot auto-configures a `DataSource` based on the properties defined in the `application.properties` or `application.yml` file, such as the database URL, username, and password. 
+When the application starts, Spring Boot uses these configurations to create a **<font color="#e36c09">connection pool</font>**. It leverages the `EntityManagerFactory` and `TransactionManager` to manage interactions with the database. 
+With these components in place, you can define repositories by extending `JpaRepository` or `CrudRepository`, which provide a high-level abstraction for performing CRUD operations. This setup minimizes boilerplate code and allows for seamless integration with various databases, ensuring efficient and secure data management.
+
+
+>[!HELP] Example of HikariCP configuration
+>*spring.datasource.hikari.connectionTimeout=15000*  
+*spring.datasource.hikari.maximumPoolSize=10*  
+*spring.datasource.hikari.idleTimeout=300000*  
+*spring.datasource.hikari.minimum-idle=5*
 
 ## Performance Issues
 
@@ -121,6 +170,7 @@ public class Author {
 @EntityGraph(type=EntityGraph.EntityGraphType.FETCH, value = "Author.books")  
 List<Author> findAll();
 ```
+
 ### Unnecessary Transactions
 
 All repository and service methods are executed within a transaction. This can be a performance problem if we have long-running transactions that lock database resources and block other transactions.It can be a performance problem if the transaction locks database resources and blocks other transactions.
@@ -155,7 +205,9 @@ Suppose we have a `Book` entity and a `Review` entity, where each `Book` can hav
 ```java
 @Entity 
 public class Book { 
-	@Id private Long id; 
+	@Id 
+	private Long id; 
+	
 	private String title; 
 	private String content; 
 
@@ -194,6 +246,22 @@ List<Book> findTopBooksWithHighestReview();
 ```
 
 This query fetches the reviews along with the books in a single query, avoiding subqueries.
-### Excessive data gathering
+
+## Cache Issues
+
+- Increased memory usage
+- Lack of Consistency
+- Stale data
+
+>[!SUCCESS] Solution
+>
+>- Cache only what is needed
+>- Invalidate cache when data changes
+>- Use time based cache
+>	- Time-To-Live (TTL) cache
+>- Monitor cache usage
+>	- Micrometer
+>	- JMX
+
 
 
