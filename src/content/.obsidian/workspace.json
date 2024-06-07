@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "6c34cbafad200bea",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "post/python-packages.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "post/jpa-performance.md",
+                "file": "post/python-packages.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "post/jpa-performance.md",
+                "file": "post/python-packages.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "post/jpa-performance.md"
+                "file": "post/python-packages.md"
               }
             }
           }
@@ -146,16 +159,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "226a93f0e55bc808",
+  "active": "6c34cbafad200bea",
   "lastOpenFiles": [
-    "post/unique-tags.md",
-    "post/social-image.md",
     "post/jpa-performance.md",
+    "post/python-packages.md",
+    "post/security_path_linux.md",
+    "post/social-image.md",
+    "post/unique-tags.md",
     "post/long-title.md",
     "post/markdown-elements/index.md",
     "post/cover-image/index.md",
     "2024-06-04.md",
-    "post/xbox-controller.md",
-    "post/security_path_linux.md"
+    "post/xbox-controller.md"
   ]
 }
